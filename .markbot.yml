@@ -1,0 +1,53 @@
+repo: reflections
+
+naming: true
+liveWebsite: true
+restrictFileTypes: true
+
+# Force the students to make sure all their files are committed.
+allCommitted: true
+
+# Force the students to make sure all their files are pushed & synced.
+allSynced: true
+
+allFiles:
+  # Supports any of the entries that `html` supports
+  html:
+    valid: true
+    bestPractices: true
+    outline: true
+    performance: true
+    has:
+      - 'h1'
+    hasNot:
+      - ['hr', 'The `hr` tag should not be used to create borders']
+      - ['br', 'Line break tag is not allowed! Use margin or padding!']
+ 
+html:
+  - path: 'index.html'
+    has:
+      - ['p', 'You must have a paragraph explaining what this website is']
+    hasNot:
+      - ['img', 'No images allowed on the front page. Simple = better']
+    search:
+      - ['Reflections Blog', 'Should probably tell them what the website is about, eh?']
+      
+  - path: 'reflections.html'
+  - path: 'about.html'
+  
+functionality:
+
+  # The path to the HTML file to load in a hidden browser window
+  - path: "reflections.html"
+
+    # A replacement for individual tests
+    # Will just confirm that there are no Javascript errors
+    noErrors: true
+
+    # An array of Javascript code pieces to run against the live website
+    tests:
+      - |
+        let posts = $('.post');
+
+        if (posts.length == 0) fail('You do not have any posts on your reflections page!');
+        else pass();
